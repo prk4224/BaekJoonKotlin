@@ -13,6 +13,8 @@ fun main(){
             if(priorityQueue.size == 0) println(0)
             else println(priorityQueue.remove())
         }
+
+
         else priorityQueue.add(input)
     }
 }

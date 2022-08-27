@@ -10,11 +10,9 @@ fun main(){
 fun solution(id_list: Array<String>, report: Array<String>, k: Int): IntArray {
     var answer: IntArray = intArrayOf()
 
+    // 리포터, 리포트
     for(i in report.indices){
         val st = StringTokenizer(report[i])
-
-
-
     }
 
     return answer

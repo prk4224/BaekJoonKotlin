@@ -16,6 +16,7 @@ fun main(){
     println(solution(str4))
 }
 
+// 예외상황 ?
 fun solution(new_id: String): String {
 
     // 1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.

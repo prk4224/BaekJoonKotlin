@@ -35,8 +35,6 @@ fun main() {
 
 fun dfs(col : Int, row : Int, state : PipeState) {
 
-
-
     if (col >= N || row >= N || inputMap[col][row] == 1) return
 
     when(state){

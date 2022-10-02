@@ -4,15 +4,32 @@ import java.util.*
 
 
 // 팀원 수, 그룹 수, 멤버 수, 기간 ?
-fun main(){
+fun main() {
 
     val br = BufferedReader(InputStreamReader(System.`in`))
 
     val st = StringTokenizer(br.readLine())
 
-    val teamMemeber = st.nextToken()
-    val groupCount = st.nextToken()
-    val totalMember = st.nextToken()
-    val totalWeek = st.nextToken()
+    val teamMember = st.nextToken().toInt()
+    val groupCount = st.nextToken().toInt()
+    val totalMember = st.nextToken().toInt()
+    val totalWeek = st.nextToken().toInt()
+
+    var resultMember = ArrayList<IntArray>()
+
+    for(i in 0 until totalMember){
+
+    }
 
 }
+
+fun randomFirstMember(groupList: ArrayList<IntArray>, totalMember: Int){
+    val member = arrayOf(1..totalMember)
+    member.shuffle()
+
+    for(i in 0 until groupList.size){
+        groupList[i][0] = (member as Array<Int>)[i]
+    }
+
+}
+

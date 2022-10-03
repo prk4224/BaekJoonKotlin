@@ -14,12 +14,14 @@ fun main() {
     val groupCount = st.nextToken().toInt()
     val totalMember = st.nextToken().toInt()
     val totalWeek = st.nextToken().toInt()
+    var checkMember = Array(totalMember){BooleanArray(totalMember)}
 
-    var resultMember = ArrayList<IntArray>()
 
-    for(i in 0 until totalMember){
 
-    }
+    var resultMember = ArrayList<ArrayList<Int>>()
+    
+
+    print(checkMember[1][2])
 
 }
 

@@ -46,6 +46,8 @@ fun main() {
         intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0),
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 0)
     )
+    val st = StringTokenizer("")
+    while(st.hasMoreTokens())
 
     println(solution(board4))
 }

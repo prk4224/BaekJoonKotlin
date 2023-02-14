@@ -1,84 +1,49 @@
+import kotlin.math.absoluteValue
+import java.util.*
 
-private val dx = listOf(1, -1, 0, 0)
-private val dy = listOf(0, 0, 1, -1)
+val map = Array(21) { IntArray(21) }
+val checkedMap =  Array(21) { Array(21) { IntArray(4)} }
+val dx = listOf(1,0,1,-1)
+val dy = listOf(0,1,1,1)
 
-fun main() {
+fun main() = with(System.`in`.bufferedReader()) {
 
-    val N = readLine()?.toInt() ?: throw IllegalArgumentException("Input Size Error")
 
-    val map = Array(N) { CharArray(N) }
-    val checked = Array(N) { BooleanArray(N) { false } }
+    val coordiList = mutableListOf<Pair<Int,Int>>()
+    val tmemp = Array(4) {item -> dx[item]}
+    val tmep = tmemp.minOf { it }
 
-    for (i in 0 until N) {
-        val temp = readLine().toString()
-        for (j in 0 until N) {
-            map[i][j] = temp[j]
+    print(tmep)
+
+    for(i in 1 .. 19) {
+        val str = readLine().split(" ").map { it.toInt() }
+        for(j in 1 .. 19) {
+            if(str[j-1] != 0) {
+                coordiList.add(Pair(i,j))
+            }
+            map[i][j] = str[j-1]
         }
     }
-    var result = 0
 
-    for (i in 0 until N) {
-        for (j in 0 until N) {
-            for (k in 0 until 4) {
-                val nx = i + dx[k]
-                val ny = j + dy[k]
-                if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue
-                if (!checked[nx][ny] && map[i][j] != map[nx][ny]) {
-                    val tempMap = Array(N) { item ->
-                        map[item].clone()
-                    }
-                    val swapMap = swapMap(Pair(i, j), Pair(nx, ny), tempMap)
-                    result = result.coerceAtLeast(resultCandy(swapMap, N))
-                }
-                checked[i][j] = true
+    coordiList.forEach {
+        for(k in 0 .. 3){
+            val x = it.first
+            val y = it.second
+            if(checkedMap[x][y][k] == 0 && checkedWinner(x,y,k,map[x][y]) == 5) {
+                print("${map[x][y]}\n$x $y")
+                return
             }
         }
     }
 
-    print(result)
+    print(0)
 }
 
-fun swapMap(
-    current: Pair<Int, Int>,
-    target: Pair<Int, Int>,
-    map: Array<CharArray>
-): Array<CharArray> {
-    val temp = map[current.first][current.second]
-    map[current.first][current.second] = map[target.first][target.second]
-    map[target.first][target.second] = temp
+fun checkedWinner(x: Int, y:Int, dir: Int, color: Int) : Int {
+    val nx = x + dx[dir]
+    val ny = y + dy[dir]
 
-    return map
-}
-
-fun resultCandy(map: Array<CharArray>, size: Int): Int {
-    var result = 0
-
-    for (i in 0 until size) {
-        result = result.coerceAtLeast(countingCandy(map[i], size))
-        result = result.coerceAtLeast(countingCandy(getColumnArray(map, i, size), size))
-    }
-
-    return result
-}
-
-fun getColumnArray(map: Array<CharArray>, index: Int, size: Int): CharArray {
-    return CharArray(size) { i ->
-        map[i][index]
-    }
-}
-
-fun countingCandy(map: CharArray, size: Int): Int {
-    var total = 1
-    var result = 0
-    for (i in 0 until size - 1) {
-        if (map[i] == map[i + 1]) {
-            total++
-        } else {
-            result = result.coerceAtLeast(total)
-            total = 1
-        }
-    }
-
-    result = result.coerceAtLeast(total)
-    return result
+    return if(map[nx][ny] == color) {
+        checkedWinner(nx,ny,dir,color) + 1.also { checkedMap[nx][ny][dir] = it }
+    } else 1
 }

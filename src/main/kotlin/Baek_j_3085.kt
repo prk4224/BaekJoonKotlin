@@ -1,7 +1,6 @@
-import kotlin.math.absoluteValue
 import java.util.*
 
-val map = Array(21) { IntArray(21) }
+private val map = Array(21) { IntArray(21) }
 val checkedMap =  Array(21) { Array(21) { IntArray(4)} }
 val dx = listOf(1,0,1,-1)
 val dy = listOf(0,1,1,1)

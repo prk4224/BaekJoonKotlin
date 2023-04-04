@@ -38,6 +38,8 @@ fun solution(s: String): Int {
             leftIdx--
             rightIdx++
         }
+        val list = listOf(0,2,3,4,5,6)
+
 
         answer = max(answer, cnt)
     }

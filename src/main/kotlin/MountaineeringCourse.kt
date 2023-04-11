@@ -1,8 +1,6 @@
 import java.util.*
 import kotlin.collections.ArrayList
 
-// https://tech.kakao.com/2022/07/13/2022-coding-test-summer-internship/
-
 private lateinit var graph: ArrayList<ArrayList<Node>>
 fun solution(n: Int, paths: Array<IntArray>, gates: IntArray, summits: IntArray): IntArray {
     graph = ArrayList()

@@ -7,6 +7,23 @@ fun main() {
         arrayOf("bbb", "12:10", "30"),
         arrayOf("ccc", "12:40", "10"),
     )
+    val temp = listOf(
+        Pair(1,4),
+        Pair(2,4),
+        Pair(1,5),
+        Pair(3,6),
+        Pair(2,6),
+        Pair(1,7),
+        Pair(1,6),
+    )
+
+    val tmpelist = temp.sortedWith(
+        compareBy({it.first},{it.second})
+    )
+
+    tmpelist.forEach {
+        println("${it.first} / ${it.second}")
+    }
 
     val result = AssignmentProgress().solution(plans)
 

@@ -29,6 +29,7 @@ class RiCoChatRobot {
             }
         }
 
+
         val cntMap = Array(board.size) {
             IntArray(board[it].length) { -1 }
         }
